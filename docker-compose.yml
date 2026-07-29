@@ -1,0 +1,31 @@
+services:
+  mergeguard:
+    build: .
+    container_name: mergeguard
+    ports:
+      - "9000:8000"
+    env_file:
+      - .env
+    volumes:
+      - reviews_data:/app/data
+    restart: unless-stopped
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:8000/health"]
+      interval: 30s
+      timeout: 5s
+      retries: 3
+
+  dashboard:
+    build: .
+    container_name: mergeguard-dashboard
+    command: ["streamlit", "run", "dashboard.py", "--server.port=8501", "--server.address=0.0.0.0"]
+    ports:
+      - "8501:8501"
+    env_file:
+      - .env
+    depends_on:
+      - mergeguard
+    restart: unless-stopped
+
+volumes:
+  reviews_data:
