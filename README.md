@@ -42,18 +42,18 @@ flowchart TD
     classDef ui fill:#DC2626,color:#fff,stroke:#fff,stroke-width:2px;
 
     %% Nodes
-    A(GitHub Webhook) ::: github
-    B(FastAPI Receiver) ::: fastapi
-    C{LangGraph Fan-Out} ::: langgraph
+    A(GitHub Webhook)
+    B(FastAPI Receiver)
+    C{LangGraph Fan-Out}
     
-    A_Sec[Security Agent] ::: agent
-    A_Qual[Quality Agent + SonarQube] ::: agent
-    A_Test[Test Gap Agent] ::: agent
-    A_Doc[Doc Agent] ::: agent
+    A_Sec[Security Agent]
+    A_Qual[Quality Agent + SonarQube]
+    A_Test[Test Gap Agent]
+    A_Doc[Doc Agent]
     
-    Sup[Supervisor Agent] ::: supervisor
-    DB[(SQLite: pending_reviews)] ::: database
-    UI(Streamlit HITL Dashboard) ::: ui
+    Sup[Supervisor Agent]
+    DB[(SQLite: pending_reviews)]
+    UI(Streamlit HITL Dashboard)
 
     %% Edges
     A -->|POST /webhook| B
@@ -63,6 +63,15 @@ flowchart TD
     Sup -->|Save State| DB
     DB <-->|Review / Modify| UI
     UI -->|Approve POST| B
+
+    %% Apply Classes
+    class A github;
+    class B fastapi;
+    class C langgraph;
+    class A_Sec,A_Qual,A_Test,A_Doc agent;
+    class Sup supervisor;
+    class DB database;
+    class UI ui;
 ```
 
 ### The Agents
