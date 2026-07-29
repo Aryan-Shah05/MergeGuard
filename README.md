@@ -1,5 +1,5 @@
 <div align="center">
-  <h1>🛡️ MergeGuard</h1>
+  <h1>MergeGuard</h1>
   <p><strong>An Autonomous, Multi-Agent Code Review Pipeline powered by LangGraph</strong></p>
   
   [![Python](https://img.shields.io/badge/Python-3.11+-blue.svg)](https://www.python.org)
@@ -124,5 +124,3 @@ flowchart TD
 ## 💡 Future Enhancements
 - **RAG for Full-Codebase Context:** Implementing ChromaDB to vectorize the repository, allowing the AI to catch breaking changes across files not included in the PR diff.
 - **Horizontal Scaling:** Transitioning from FastAPI `BackgroundTasks` to a Redis/Celery task queue for enterprise-scale webhook traffic.
-
----
