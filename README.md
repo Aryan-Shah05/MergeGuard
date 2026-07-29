@@ -32,19 +32,28 @@ MergeGuard solves the latency issues of traditional LLM wrappers through archite
 
 ```mermaid
 flowchart TD
+    %% Define Node Styles
+    classDef github fill:#181717,color:#fff,stroke:#fff,stroke-width:2px;
+    classDef fastapi fill:#059669,color:#fff,stroke:#fff,stroke-width:2px;
+    classDef langgraph fill:#2563EB,color:#fff,stroke:#fff,stroke-width:2px;
+    classDef agent fill:#4F46E5,color:#fff,stroke:#fff,stroke-width:2px;
+    classDef supervisor fill:#9333EA,color:#fff,stroke:#fff,stroke-width:2px;
+    classDef database fill:#D97706,color:#fff,stroke:#fff,stroke-width:2px;
+    classDef ui fill:#DC2626,color:#fff,stroke:#fff,stroke-width:2px;
+
     %% Nodes
-    A(GitHub Webhook) fill:#181717,color:#fff
-    B(FastAPI Receiver) fill:#059669,color:#fff
-    C{LangGraph Fan-Out} fill:#2563EB,color:#fff
+    A(GitHub Webhook) ::: github
+    B(FastAPI Receiver) ::: fastapi
+    C{LangGraph Fan-Out} ::: langgraph
     
-    A_Sec[Security Agent] fill:#4F46E5,color:#fff
-    A_Qual[Quality Agent + SonarQube] fill:#4F46E5,color:#fff
-    A_Test[Test Gap Agent] fill:#4F46E5,color:#fff
-    A_Doc[Doc Agent] fill:#4F46E5,color:#fff
+    A_Sec[Security Agent] ::: agent
+    A_Qual[Quality Agent + SonarQube] ::: agent
+    A_Test[Test Gap Agent] ::: agent
+    A_Doc[Doc Agent] ::: agent
     
-    Sup[Supervisor Agent] fill:#9333EA,color:#fff
-    DB[(SQLite: pending_reviews)] fill:#D97706,color:#fff
-    UI(Streamlit HITL Dashboard) fill:#DC2626,color:#fff
+    Sup[Supervisor Agent] ::: supervisor
+    DB[(SQLite: pending_reviews)] ::: database
+    UI(Streamlit HITL Dashboard) ::: ui
 
     %% Edges
     A -->|POST /webhook| B
@@ -117,4 +126,3 @@ flowchart TD
 - **Horizontal Scaling:** Transitioning from FastAPI `BackgroundTasks` to a Redis/Celery task queue for enterprise-scale webhook traffic.
 
 ---
-*Built as a final year B.Tech AI Project at SVNIT.*
