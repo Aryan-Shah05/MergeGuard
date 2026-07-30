@@ -117,6 +117,8 @@ flowchart TD
    SUPERVISOR_MODEL=meta-llama/Meta-Llama-3.1-8B-Instruct
    QUALITY_MODEL=llama-3.1-70b-versatile
    DASHBOARD_API_BASE_URL=http://mergeguard:8000
+   REVIEW_API_KEY=your_secure_api_key_here
+   SONAR_PROJECT_KEY=your_sonar_project_key
    ```
 
 3. **Run with Docker Compose:**
